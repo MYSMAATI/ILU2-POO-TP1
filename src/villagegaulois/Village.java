@@ -56,4 +56,113 @@ public class Village {
 		}
 		return chaine.toString();
 	}
+	
+	private static class Marche {
+		private Etal[] etals;
+		
+		private Marche(int nbEtal) {
+			etals = new Etal[nbEtal];
+			
+			for (int i = 0; i < nbEtal; i++) {
+				etals[i] = new Etal();
+			}
+		}
+		
+		
+		private void utiliserEtal(int indiceEtal, Gaulois vendeur, String produit, int nbProduit) {
+			etals[indiceEtal].occuperEtal(vendeur, produit, nbProduit);
+		}
+		
+		
+		private int trouverEtalLibre() {
+			int indiceEtal = -1;
+			
+			for (int i = 0; i < etals.length && indiceEtal == -1; i++) {
+				if (! etals[i].isEtalOccupe()) {
+					indiceEtal = i;
+				}
+			}
+			
+			return indiceEtal;
+		}
+		
+		
+		private Etal[] trouverEtals(String produit) {
+			int nbEtalsUtilise = 0;
+			
+			for (int i = 0; i < etals.length; i++) {
+				if (etals[i].isEtalOccupe()) {
+					nbEtalsUtilise++;
+				}
+			}
+			
+			Etal[] etalsUtilises = new Etal[nbEtalsUtilise];
+			
+			for (int i = 0, j = 0; i < etals.length; i++) {
+				if (etals[i].isEtalOccupe()) {
+					etalsUtilises[j] = etals[i];
+					j++;
+				}
+			}
+			
+			return etalsUtilises;
+		}
+		
+		
+		private Etal trouverVendeur(Gaulois gaulois) {
+			Etal devanture = null;
+			
+			for (int i = 0, j = 0; i < etals.length && j == 0;  i++ ) {
+				if (etals[i].getVendeur() == gaulois) {
+					devanture = etals[i];
+					j = 1;
+				}
+			}
+			
+			return devanture;
+		}
+		
+		
+		private String afficherMarcher() {
+			int nbEtalVide = 0;
+			StringBuilder leMarche = new StringBuilder();
+			
+			for (int i = 0; i < etals.length; i++) {
+				if(etals[i].isEtalOccupe()) {
+					leMarche.append(etals[i].afficherEtal());
+				} else {
+					nbEtalVide++;
+				}
+			}
+			
+			if (nbEtalVide > 0) {
+				leMarche.append("Il reste " + nbEtalVide + " étals non utilisés sur le marché.");
+			}
+			
+			return leMarche.toString();
+		}
+	}
+	
+	public String installerVendeur(Gaulois vendeur, String produit, int nbProduit) {
+		StringBuilder installationVendeur = new StringBuilder();
+		indiceEtal = trouverEtalLibre();
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
