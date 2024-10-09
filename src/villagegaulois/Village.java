@@ -44,7 +44,11 @@ public class Village {
 		return null;
 	}
 
-	public String afficherVillageois() {
+	public String afficherVillageois() throws VillageSansChefException{
+		if(chef == null) {
+			throw new VillageSansChefException("Un village doit avoir un chef");
+		}
+		
 		StringBuilder chaine = new StringBuilder();
 		if (nbVillageois < 1) {
 			chaine.append("Il n'y a encore aucun habitant au village du chef "
@@ -192,16 +196,12 @@ public class Village {
 	
 	public String partirVendeur(Gaulois vendeur) {
 		StringBuilder sortie = new StringBuilder();
-		if (marche.trouverVendeur(vendeur) != null) {
-			sortie.append(marche.trouverVendeur(vendeur).libererEtal());
-		} else {
-			sortie.append(vendeur.getNom() + " n'occupe aucun étal. \n");
-		}
+		sortie.append(marche.trouverVendeur(vendeur).libererEtal());
 		
 		return sortie.toString();
 	}
 	
-	public String afficherMarche() {
+	public String afficherMarche(){	
 		StringBuilder affichage = new StringBuilder();
 		affichage.append("Le marché du village \"" + nom + "\" possède plusieurs étals : \n");
 		affichage.append(marche.afficherMarcher());
