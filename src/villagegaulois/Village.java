@@ -44,22 +44,24 @@ public class Village {
 		return null;
 	}
 
-	public String afficherVillageois() throws VillageSansChefException{
-		if(chef == null) {
-			throw new VillageSansChefException("Un village doit avoir un chef");
+	public String afficherVillageois(){
+		StringBuilder chaine = new StringBuilder();
+		
+		try {
+			if (nbVillageois < 1) {
+				chaine.append("Il n'y a encore aucun habitant au village du chef "
+						+ chef.getNom() + ".\n");
+			} else {
+				chaine.append("Au village du chef " + chef.getNom()
+						+ " vivent les légendaires gaulois :\n");
+				for (int i = 0; i < nbVillageois; i++) {
+					chaine.append("- " + villageois[i].getNom() + "\n");
+				}
+			}
+		} catch (VillageSansChefException e) {
+			e.printStackTrace();
 		}
 		
-		StringBuilder chaine = new StringBuilder();
-		if (nbVillageois < 1) {
-			chaine.append("Il n'y a encore aucun habitant au village du chef "
-					+ chef.getNom() + ".\n");
-		} else {
-			chaine.append("Au village du chef " + chef.getNom()
-					+ " vivent les légendaires gaulois :\n");
-			for (int i = 0; i < nbVillageois; i++) {
-				chaine.append("- " + villageois[i].getNom() + "\n");
-			}
-		}
 		return chaine.toString();
 	}
 	
