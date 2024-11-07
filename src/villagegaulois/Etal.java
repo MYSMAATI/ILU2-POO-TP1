@@ -55,8 +55,7 @@ public class Etal {
 	}
 
 	public String acheterProduit(int quantiteAcheter, Gaulois acheteur) throws IllegalArgumentException,IllegalStateException {
-		if (etalOccupe) {
-			StringBuilder chaine = new StringBuilder("");
+		StringBuilder chaine = new StringBuilder(""); //reprendre
 			try {
 				chaine.append(acheteur.getNom() + " veut acheter " + quantiteAcheter
 						+ " " + produit + " à " + vendeur.getNom());
@@ -85,9 +84,6 @@ public class Etal {
 			}
 			
 			return chaine.toString();
-		} else {
-			throw new IllegalStateException("L'étal doit avoir un vendeur");
-		}
 	}
 
 	public boolean contientProduit(String produit) {

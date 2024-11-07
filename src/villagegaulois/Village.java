@@ -172,6 +172,7 @@ public class Village {
 	
 	public String rechercherVendeursProduit(String produit) {
 		StringBuilder rechercherVendeurs = new StringBuilder();
+		Gaulois vendeur;
 		
 		Etal[] etalProduit = marche.trouverEtals(produit);
 		
@@ -179,13 +180,15 @@ public class Village {
 			rechercherVendeurs.append("Personne ne vend de " + produit + ". \n");
 			
 		} else if (etalProduit.length == 1) {
-			rechercherVendeurs.append("Seul le vendeur " + etalProduit[0].getVendeur().getNom() +
+			vendeur = etalProduit[0].getVendeur();
+			rechercherVendeurs.append("Seul le vendeur " + vendeur.getNom() +
 					" propose des " + produit + " au marché. \n");
 			
 		} else {
 			rechercherVendeurs.append("Les vendeurs qui proposent des " + produit + " sont : \n");
 			for (int i = 0; i < etalProduit.length; i++) {
-				rechercherVendeurs.append("- " + etalProduit[i].getVendeur().getNom() + "\n");
+				vendeur = etalProduit[i].getVendeur();
+				rechercherVendeurs.append("- " + vendeur.getNom() + "\n");
 			}
 		}
 		
