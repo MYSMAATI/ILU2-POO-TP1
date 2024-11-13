@@ -55,7 +55,10 @@ public class Etal {
 	}
 
 	public String acheterProduit(int quantiteAcheter, Gaulois acheteur) throws IllegalArgumentException,IllegalStateException {
-		StringBuilder chaine = new StringBuilder(""); //reprendre
+		if(! etalOccupe) {
+			throw new IllegalStateException("L'étal ne peut pas être innocupé");
+		} else {
+			StringBuilder chaine = new StringBuilder("");
 			try {
 				chaine.append(acheteur.getNom() + " veut acheter " + quantiteAcheter
 						+ " " + produit + " à " + vendeur.getNom());
@@ -81,9 +84,9 @@ public class Etal {
 				}
 			} catch (NullPointerException e) {
 				e.printStackTrace();
-			}
-			
+			}	
 			return chaine.toString();
+		}
 	}
 
 	public boolean contientProduit(String produit) {
