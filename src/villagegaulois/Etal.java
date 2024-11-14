@@ -56,15 +56,18 @@ public class Etal {
 
 	public String acheterProduit(int quantiteAcheter, Gaulois acheteur) throws IllegalArgumentException,IllegalStateException {
 		if(! etalOccupe) {
+			
 			throw new IllegalStateException("L'étal ne peut pas être innocupé");
+			
+		} else if (quantiteAcheter < 1) {
+			
+			throw new IllegalArgumentException("La quantité ne peut pas être négative");
+			
 		} else {
 			StringBuilder chaine = new StringBuilder("");
 			try {
 				chaine.append(acheteur.getNom() + " veut acheter " + quantiteAcheter
 						+ " " + produit + " à " + vendeur.getNom());
-				if (quantite < 0) {
-					throw new IllegalArgumentException("La quantité ne peut pas être négative");
-				}
 				if (quantite == 0) {
 					chaine.append(", malheureusement il n'y en a plus !");
 					quantiteAcheter = 0;

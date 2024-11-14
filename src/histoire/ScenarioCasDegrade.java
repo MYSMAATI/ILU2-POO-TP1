@@ -15,7 +15,6 @@ public class ScenarioCasDegrade {
 		
 		village.afficherVillageois();
 		etal.acheterProduit(-10, obelix);
-		etal.occuperEtal(obelix, "tomates", 20);
 		etal.libererEtal();
 		etal.acheterProduit(10, null);
 		etal.acheterProduit(-10, obelix);
