@@ -8,17 +8,10 @@ import villagegaulois.Village;
 
 public class ScenarioCasDegrade {
 	public static void main(String[] args) {
-		Village village = new Village("le village des irréductibles", 10, 5);
-		Gaulois obelix = new Gaulois("Obélix", 25);
-		village.ajouterHabitant(obelix);
 		Etal etal = new Etal();
-		
-		village.afficherVillageois();
-		etal.acheterProduit(-10, obelix);
 		etal.libererEtal();
-		etal.acheterProduit(10, null);
-		etal.acheterProduit(-10, obelix);
 		System.out.println("Fin du test");
+
 		}
 
 }

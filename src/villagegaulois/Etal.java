@@ -29,9 +29,7 @@ public class Etal {
 		etalOccupe = false;
 		StringBuilder chaine = new StringBuilder();
 		
-		if(vendeur == null) {
-			chaine.append("Personne n'occupe cet étal. \n");
-		}  else {
+		try{
 			
 			chaine.append(
 					"Le vendeur " + vendeur.getNom() + " quitte son étal, ");
@@ -42,6 +40,8 @@ public class Etal {
 			} else {
 				chaine.append("il n'a malheureusement rien vendu.\n");
 			}
+		} catch (NullPointerException e){
+			e.printStackTrace();
 		}
 		return chaine.toString();
 	}
